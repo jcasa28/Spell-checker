@@ -9,35 +9,33 @@ This project implements a simple spell checker that detects misspelled words in 
 - `words.txt`: A text file containing a list of words (dictionary).
 - `Makefile`: A Makefile to build and run the program.
 
-## Compilation and Execution
-
-### Prerequisites
-- A C compiler (e.g., `gcc`).
-- `Make` tool to automate the build process.
-
 ### Steps to Run the Program
 
 1. **Clone or Download the Repository**:
    Make sure you have the following files in the same directory:
    - `spell_checker.c`
-   - `hashset.c`
+   - `hashset_pa4.c`
    - `words.txt`
-   - `Makefile`
+   - `makefile`
 
 2. **Build the Program**:
    Open your terminal and navigate to the directory where the files are located. Then, use the following command to build the program:
 
    ```bash
-   make```
+   make
 
 This will compile spell_checker.c and hashset.c and create an executable called spell_checker.
 	
 3.	**Run the Spell Checker**:
 You can run the program by using the following command:
+
 ```./spell_checker [-r] [-s] [-e]```
-	•	-r: Enable replacing characters.
-	•	-s: Enable swapping adjacent characters.
-	•	-e: Enable erasing characters.
+
+The program accepts flags that control how it attempts to correct misspelled words:
+   - `-r`: Enable replacing characters (replaces each character with an alternative character in the alphabet).
+   - `-s`: Enable swapping adjacent characters (swaps adjacent characters to find a possible word).
+   - `-e`: Enable erasing characters (removes a character at a time to check if it becomes a valid word).
+
 Example:
 ```./spell_checker -r -s -e
 ./spell_checker -r
@@ -49,32 +47,34 @@ This will read input from stdin, check for misspelled words, and print possible 
 
 **Input Format**
 
-	•	The program reads from stdin (standard input).
-	•	It checks each word in the input line for spelling errors based on the dictionary file (words.txt).
-	•	Misspelled words will be printed along with their possible corrections in CSV format.
+• The program reads from stdin (standard input).
+• It checks each word in the input line for spelling errors based on the dictionary file (words.txt).
+• Misspelled words will be printed along with their possible corrections in CSV format.
+
 ```Ths is an exmple of a sentnce with erors.```
-Output Format
+
+**Output Format**
 
 For each misspelled word, the output will be displayed in the following format:
 ```word, Ln, Col, Possible Corrections```
 
 Where:
-  •	word is the misspelled word.
-  •	Ln is the line number.
-  •	Col is the column number.
-  •	Possible Corrections are suggestions for correcting the misspelled word.
+  - `word` is the misspelled word.
+  - `Ln` is the line number.
+  - `Col`: is the column number.
+  - `Possible Corrections`: are suggestions for correcting the misspelled word.
 
 **Example output**:
 ```word, Ln, Col, Possible Corrections
 (Ths), 1, 1, This, 
 (exmple), 1, 7, example, 
 (sentnce), 1, 14, sentence, 
-(erors), 1, 24, errors, ```
-
+(erors), 1, 24, errors, 
+```
 **Notes**
 
-  •	The program uses a simple hashset implementation to store and search for words in the dictionary (words.txt).
-  •	The correction strategies are applied only if the corresponding flags (-r, -s, -e) are set:
-  •	-r replaces each character with alternatives in the alphabet.
-  •	-s swaps adjacent characters.
-  •	-e erases characters from the word.
+  - The program uses a simple hashset implementation to store and search for words in the dictionary (words.txt).
+  - The correction strategies are applied only if the corresponding flags (-r, -s, -e) are set:
+  - `-r`:replaces each character with alternatives in the alphabet.
+  - `-s`: swaps adjacent characters.
+  - `-e`: erases characters from the word.
